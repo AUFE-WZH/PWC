@@ -1,0 +1,429 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PWCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Sex" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Age" Type="int" Nullable="false" />
+    <Property Name="QQ" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Tel" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="State" Type="smallint" Nullable="false" />
+    <Property Name="CreationDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Answer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="DiscussID" Type="int" Nullable="false" />
+    <Property Name="AnswerTime" Type="datetime" Nullable="false" />
+    <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Discuss">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="QuestionTime" Type="datetime" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProblemDescription" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Notice">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Describe" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="State" Type="smallint" Nullable="false" />
+    <Property Name="AdminID" Type="int" Nullable="false" />
+    <Property Name="CreationDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OCProblem">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="OCID" />
+      <PropertyRef Name="ProblemID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OCID" Type="int" Nullable="false" />
+    <Property Name="ProblemID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OnlineContest">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CompetitionState" Type="smallint" Nullable="false" />
+    <Property Name="Number" Type="int" Nullable="false" />
+    <Property Name="StartTime" Type="datetime" Nullable="false" />
+    <Property Name="EndTime" Type="datetime" Nullable="false" />
+    <Property Name="Place" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Describe" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AdminID" Type="int" Nullable="false" />
+    <Property Name="CreationDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Problem">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TypeID" Type="int" Nullable="false" />
+    <Property Name="TimeLimit" Type="int" Nullable="false" />
+    <Property Name="MemLimit" Type="int" Nullable="false" />
+    <Property Name="Difficulty" Type="smallint" Nullable="false" />
+    <Property Name="Describe" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Input" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Output" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SampleInput" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SampleOutput" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Source" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Evaluate" Type="smallint" Nullable="false" />
+    <Property Name="CreationDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatorID" Type="int" Nullable="false" />
+    <Property Name="Answers" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProblemType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProNumber" Type="int" />
+  </EntityType>
+  <EntityType Name="Record">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TodayDate" Type="date" Nullable="false" />
+    <Property Name="LoginNumber" Type="int" Nullable="false" />
+    <Property Name="AllAnswerPro" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RecordUser">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="RecordID" />
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RecordID" Type="int" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="LoginTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Result">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Describe" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ProNumber" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TestData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProblemID" Type="int" Nullable="false" />
+    <Property Name="Data" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Result" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Sex" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Age" Type="int" Nullable="false" />
+    <Property Name="QQ" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Tel" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Introduce" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreationDate" Type="datetime" Nullable="false" />
+    <Property Name="State" Type="smallint" Nullable="false" />
+    <Property Name="Problems" Type="int" Nullable="false" />
+    <Property Name="Accepteds" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserProblem">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="ProblemID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="ProblemID" Type="int" Nullable="false" />
+    <Property Name="ResultID" Type="int" Nullable="false" />
+    <Property Name="Evaluate" Type="smallint" Nullable="false" />
+    <Property Name="Runtime" Type="int" />
+    <Property Name="Memory" Type="int" />
+    <Property Name="Language" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="SubmitDate" Type="datetime" Nullable="false" />
+    <Property Name="Code" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Answer_Discuss">
+    <End Role="Discuss" Type="Self.Discuss" Multiplicity="1" />
+    <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Discuss">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Answer">
+        <PropertyRef Name="DiscussID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Answer_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Answer">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Discuss_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Discuss" Type="Self.Discuss" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Discuss">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Notice_Admin">
+    <End Role="Admin" Type="Self.Admin" Multiplicity="1" />
+    <End Role="Notice" Type="Self.Notice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admin">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Notice">
+        <PropertyRef Name="AdminID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OCProblem_OCProblem">
+    <End Role="OnlineContest" Type="Self.OnlineContest" Multiplicity="1" />
+    <End Role="OCProblem" Type="Self.OCProblem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OnlineContest">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OCProblem">
+        <PropertyRef Name="OCID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OCProblem_Problem">
+    <End Role="Problem" Type="Self.Problem" Multiplicity="1" />
+    <End Role="OCProblem" Type="Self.OCProblem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Problem">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OCProblem">
+        <PropertyRef Name="ProblemID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OnlineContest_Admin">
+    <End Role="Admin" Type="Self.Admin" Multiplicity="1" />
+    <End Role="OnlineContest" Type="Self.OnlineContest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admin">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OnlineContest">
+        <PropertyRef Name="AdminID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Problem_Admin">
+    <End Role="Admin" Type="Self.Admin" Multiplicity="1" />
+    <End Role="Problem" Type="Self.Problem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admin">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Problem">
+        <PropertyRef Name="CreatorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Problem_ProblemType">
+    <End Role="ProblemType" Type="Self.ProblemType" Multiplicity="1" />
+    <End Role="Problem" Type="Self.Problem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProblemType">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Problem">
+        <PropertyRef Name="TypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RecordUser_Record">
+    <End Role="Record" Type="Self.Record" Multiplicity="1" />
+    <End Role="RecordUser" Type="Self.RecordUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Record">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RecordUser">
+        <PropertyRef Name="RecordID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RecordUser_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="RecordUser" Type="Self.RecordUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RecordUser">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TestData_Problem">
+    <End Role="Problem" Type="Self.Problem" Multiplicity="1" />
+    <End Role="TestData" Type="Self.TestData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Problem">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TestData">
+        <PropertyRef Name="ProblemID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserProblem_Problem">
+    <End Role="Problem" Type="Self.Problem" Multiplicity="1" />
+    <End Role="UserProblem" Type="Self.UserProblem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Problem">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserProblem">
+        <PropertyRef Name="ProblemID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserProblem_Result">
+    <End Role="Result" Type="Self.Result" Multiplicity="1" />
+    <End Role="UserProblem" Type="Self.UserProblem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Result">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserProblem">
+        <PropertyRef Name="ResultID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserProblem_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="UserProblem" Type="Self.UserProblem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserProblem">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PWCModelStoreContainer">
+    <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Answer" EntityType="Self.Answer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Discuss" EntityType="Self.Discuss" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Notice" EntityType="Self.Notice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OCProblem" EntityType="Self.OCProblem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OnlineContest" EntityType="Self.OnlineContest" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Problem" EntityType="Self.Problem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProblemType" EntityType="Self.ProblemType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Record" EntityType="Self.Record" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RecordUser" EntityType="Self.RecordUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Result" EntityType="Self.Result" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TestData" EntityType="Self.TestData" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserProblem" EntityType="Self.UserProblem" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Answer_Discuss" Association="Self.FK_Answer_Discuss">
+      <End Role="Discuss" EntitySet="Discuss" />
+      <End Role="Answer" EntitySet="Answer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Answer_User" Association="Self.FK_Answer_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Answer" EntitySet="Answer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Discuss_User" Association="Self.FK_Discuss_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Discuss" EntitySet="Discuss" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notice_Admin" Association="Self.FK_Notice_Admin">
+      <End Role="Admin" EntitySet="Admin" />
+      <End Role="Notice" EntitySet="Notice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OCProblem_OCProblem" Association="Self.FK_OCProblem_OCProblem">
+      <End Role="OnlineContest" EntitySet="OnlineContest" />
+      <End Role="OCProblem" EntitySet="OCProblem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OCProblem_Problem" Association="Self.FK_OCProblem_Problem">
+      <End Role="Problem" EntitySet="Problem" />
+      <End Role="OCProblem" EntitySet="OCProblem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OnlineContest_Admin" Association="Self.FK_OnlineContest_Admin">
+      <End Role="Admin" EntitySet="Admin" />
+      <End Role="OnlineContest" EntitySet="OnlineContest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Problem_Admin" Association="Self.FK_Problem_Admin">
+      <End Role="Admin" EntitySet="Admin" />
+      <End Role="Problem" EntitySet="Problem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Problem_ProblemType" Association="Self.FK_Problem_ProblemType">
+      <End Role="ProblemType" EntitySet="ProblemType" />
+      <End Role="Problem" EntitySet="Problem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RecordUser_Record" Association="Self.FK_RecordUser_Record">
+      <End Role="Record" EntitySet="Record" />
+      <End Role="RecordUser" EntitySet="RecordUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RecordUser_User" Association="Self.FK_RecordUser_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="RecordUser" EntitySet="RecordUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TestData_Problem" Association="Self.FK_TestData_Problem">
+      <End Role="Problem" EntitySet="Problem" />
+      <End Role="TestData" EntitySet="TestData" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserProblem_Problem" Association="Self.FK_UserProblem_Problem">
+      <End Role="Problem" EntitySet="Problem" />
+      <End Role="UserProblem" EntitySet="UserProblem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserProblem_Result" Association="Self.FK_UserProblem_Result">
+      <End Role="Result" EntitySet="Result" />
+      <End Role="UserProblem" EntitySet="UserProblem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserProblem_User" Association="Self.FK_UserProblem_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="UserProblem" EntitySet="UserProblem" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

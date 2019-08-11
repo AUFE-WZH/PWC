@@ -1,0 +1,120 @@
+﻿@model List<PWC.Models.Problem>
+@{
+    Layout = "~/Views/Shared/_MyHomePage.cshtml";
+}
+
+<div style="margin-top:70px">
+    <ol class="breadcrumb" style="font-size:25px">
+        <li><a href="/Home/OnlineCon?page=@Session["ocpage"]">竞赛</a></li>
+        <li class="active">竞赛列表</li>
+    </ol>
+    <div class="panel panel-primary">
+
+        <div class="panel-heading"><p style="font-size:30px ;margin-bottom:0px">OnlineContestProblem</p></div>
+        <div class="panel-body">
+            <p style="text-align:center;font-size:20px"><strong>比赛：@Session["OnlineContest"]</strong></p>
+        </div>
+        <table class="table">
+            <tr class="info">
+                <th width="10%" class="hidden-xs header text-center">题目编号</th>
+                <th width="10%" class="header text-center">题目名称</th>
+                <th width="10%" class="hidden-xs header text-center">时间限制</th>
+                <th width="10%" class="hidden-xs header text-center">空间限制</th>
+                <th width="15%" class="header text-center">题目类型</th>
+                <th width="25%" class="hidden-xs header text-center">难度</th>
+                <th width="10%" class="hidden-xs header text-center">来源</th>
+                <th width="10%" class="hidden-xs header text-center">评价</th>
+            </tr>
+            @{
+
+                if (Model.Count > 0)
+                {
+                    var bianhao = 1;
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="hidden-xs">
+                                <div class="text-center">
+                                    @{@bianhao; bianhao++;}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="text-center">
+                                    @{
+                                        if (Convert.ToInt32(Session["OCState"]) != 1)
+                                        {
+                                            <a href="/Home/OnlineCPShow?id=@item.ID" style="color:red">@item.Name</a>
+                                        }
+                                        else
+                                        {
+                                            <a href="/Home/OnlineCPShow?id=@item.ID" style="color:blue">@item.Name</a>
+
+                                        }
+                                    }
+
+                                </div>
+
+                            </td>
+                            <td class="hidden-xs">
+                                <div class="text-center">
+                                    <nobr>@item.TimeLimit ms</nobr>
+                                </div>
+                            </td>
+                            <td class="hidden-xs">
+                                <div class="text-center">
+                                    <nobr>@item.MemLimit KB</nobr>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="text-center">
+                                    <nobr>@item.ProblemType.Type</nobr>
+                                </div>
+                            </td>
+                            <td class="hidden-xs">
+                                <div class="text-center">
+                                    <nobr>@item.Difficulty</nobr>
+                                </div>
+                            </td>
+                            <td class="hidden-xs">
+                                <div class="text-center">
+                                    <nobr>@item.Source</nobr>
+                                </div>
+                            </td>
+                            <td class="hidden-xs">
+                                <div class="text-center">
+                                    <nobr>@item.Evaluate </nobr>
+                                </div>
+                            </td>
+                        </tr>
+
+                    }
+                }
+            }
+            <tr>
+                <td class="hidden-xs"></td>
+                <td></td>
+                <td class="hidden-xs"></td>
+                <td class="hidden-xs"></td>
+                <td></td>
+                <td class="hidden-xs"></td>
+                <td class="hidden-xs"></td>
+                <td class="hidden-xs"></td>
+            </tr>
+        </table>
+        <br />
+        <div class="panel-body">
+            <p style="text-align:center;font-size:20px"><strong>排名</strong></p>
+        </div>
+        <table class="table">
+            <tr class="info">
+                <th width="10%" class="hidden-xs header text-center">编号</th>
+                <th width="10%" class="header text-center">姓名</th>
+                <th width="10%" class="header text-center">AC题数</th>
+            </tr>
+
+        </table>
+
+    </div>
+</div>
+
+

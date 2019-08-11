@@ -1,0 +1,139 @@
+﻿@model  Tuple<List<PWC.Models.Problem>,int,int>
+@{
+    Layout = "~/Views/Shared/_MyHomePage.cshtml";
+}
+
+<div style="margin-top:70px">
+    <ol class="breadcrumb" style="font-size:25px">
+        <li><a href="/Home/Practice">训练</a></li>
+        <li class="active">分类</li>
+    </ol>
+    <center>
+        <table id="problemset" class="table table-striped">
+            <thead>
+                <tr class="toprow">
+                    <th width="80" class="hidden-xs header text-center">题目编号</th>
+                    <th class="header text-center">标题</th>
+                    <th class="hidden-xs header text-center" width="10%">来源</th>
+                    <th class="hidden-xs header text-center" width="10%">评价</th>
+                    <th style="cursor: pointer" width="60" class="header text-center">正确</th>
+                    <th style="cursor: pointer" width="60" class="header text-center">提交</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    
+                    if (Model.Item1.Count > 0)
+                    {
+                        int i=0;
+                        var ss="";
+                        foreach (var item in Model.Item1)
+                        {
+                            if ((i++) % 2 == 0)
+                            {
+                                ss = "evenrow";
+                            }
+                            else
+                            {
+                                ss = "oddrow";
+                            }
+                            <tr class=@ss>
+                                <td class="hidden-xs">
+                                    <div class="text-center">
+                                        @item.ID
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="text-center">
+                                        <a href="/Home/Problem?id=@item.ID&page=1">@item.Name</a>
+                                    </div>
+                                </td>
+                                <td class="hidden-xs">
+                                    <div class="text-center">
+                                        <nobr>@item.Source</nobr>
+                                    </div>
+                                </td>
+                                <td class="hidden-xs">
+                                    <div class="text-center">
+                                        <nobr>@item.Evaluate</nobr>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="text-center">
+                                        <nobr>@item.UserProblem.Where(p => p.ProblemID == item.ID && p.ResultID == 2).Count()</nobr>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="text-center">
+                                        <nobr>@item.UserProblem.Where(p => p.ProblemID == item.ID).Count()</nobr>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                        }
+                    }
+                }
+            </tbody>
+        </table>
+
+        <nav class="center">
+            <ul class="pagination">
+                @{
+                    if (Model.Item2 > 0)
+                    {
+                        int page = Model.Item3;
+                        <li class="page-item">
+                        @{
+                            
+                            if(page > 1)
+                            {
+                                page = page-1;
+                                <a href="/Home/Classify?id=@Session["classifyid"]&page=@page">&lt;&lt;</a>
+                            }
+                            else
+                            {
+                                <a href="/Home/Classify?id=@Session["classifyid"]&page=@page">&lt;&lt;</a>
+                            }
+                        }
+                        </li>
+                        page = Model.Item3;
+                        for (int i = 1; i <= Model.Item2; i++)
+                        {
+                            if (i != page)
+                            {
+                                <li class="page-item">
+                                    <a href="/Home/Classify?id=@Session["classifyid"]&page=@i">@i</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="active page-item">
+                                    <a href="/Home/Classify?id=@Session["classifyid"]&page=@i">@i</a>
+                                </li>
+                            }
+
+                        }
+                        page = Model.Item3;
+                        <li class="page-item">
+                        @{
+                            if(page < Model.Item2)
+                            {
+                                page = page + 1;
+                                <a href="/Home/Classify?id=@Session["classifyid"]&page=@page">&gt;&gt;</a>
+                            }
+                            else
+                            {
+                                <a href="/Home/Classify?id=@Session["classifyid"]&page=@page">&gt;&gt;</a>
+                            }
+                        }
+                        </li>
+                        
+                    }
+                      
+                }
+                
+            </ul>
+        </nav>
+    </center>
+        
+</div>

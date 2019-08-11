@@ -1,0 +1,148 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>弹球游戏</title>
+</head>
+<body>
+    <canvas id="canvas" width="400" height="400"></canvas>
+    <div id="div"></div>
+    <button id="button1">重新开始</button>
+    <button id="button2" style="color: red;">打开外挂</button>
+    <script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+        //外挂变量
+        var flag = 0;
+        var canv = document.getElementById("canvas");
+        var div = document.getElementById("div");
+        div.innerHTML = "continue!!";
+        var ctx = canv.getContext("2d");
+
+        //球
+        var ball = {
+            x: 100,
+            y: 100,
+            r: 10,
+            xSpeed: -3,
+            ySpeed: -2
+        };
+        //弹板
+        var panel = {
+            x: 200,
+            y: 390,
+            xSize: 50,
+            ySize: 5,
+            speed: 25
+        };
+        //画球
+        ball.draw = function () {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2, false);
+            ctx.fill();
+        };
+        //画板
+        panel.draw = function () {
+            ctx.fillRect(this.x, this.y, this.xSize, this.ySize);
+        }
+        //球运动函数
+        ball.move = function () {
+            this.x = this.x + this.xSpeed;
+            this.y = this.y + this.ySpeed;
+        };
+        //球出界检测函数
+        ball.checkCanvas = function (panelStart, panelEnd) {
+            if (this.x < this.r || this.x > 400 - this.r)
+                this.xSpeed = -this.xSpeed;
+            if (this.y < this.r)
+                this.ySpeed = -this.ySpeed;
+            if (this.y > 390 - this.r) {
+                if (this.x > panelStart && this.x < panelEnd)
+                    this.ySpeed = -Math.floor(Math.random() * 10);
+                else {
+                    div.innerHTML = "Game Over!!";
+                    clearInterval(mytime);
+                    this.x = 50;
+                    this.y = 100;
+                }
+            }
+        };
+        //外挂开关函数
+        var waigu = function (f) {
+            if (f) {
+                ctx.strokeStyle = "red";
+                ctx.beginPath();
+                ctx.moveTo(ball.x, ball.y);
+                var time, lx, ly;
+                if (ball.xSpeed > 0) {
+                    time = (400 - ball.x) / Math.abs(ball.xSpeed);
+                    ly = ball.y + ball.ySpeed * time;
+                    lx = 400;
+                }
+                else {
+                    time = (ball.x - 0) / Math.abs(ball.xSpeed);
+                    ly = ball.y + ball.ySpeed * time;
+                    lx = 0;
+                }
+
+                ctx.lineTo(lx, ly);
+                ctx.stroke();
+                ctx.strokeStyle = "black";
+            }
+        };
+
+        //定时器
+        var mytime = setInterval(function () {
+            ctx.clearRect(0, 0, 400, 400);
+            ball.draw();
+            panel.draw();
+            ball.move();
+            waigu(flag);
+            ball.checkCanvas(panel.x, panel.x + panel.xSize);
+            ctx.strokeRect(0, 0, 400, 400);
+        }, 30);
+
+        //按键检测
+        $("body").keydown(function (event) {
+            if (event.keyCode == 37) {
+                panel.x = panel.x - panel.speed;
+                if (panel.x < 0)
+                    panel.x = 0;
+            }
+            if (event.keyCode == 39) {
+                panel.x = panel.x + panel.speed;
+                if (panel.x > 400 - panel.xSize)
+                    panel.x = 400 - panel.xSize;
+            }
+        });
+
+        //重新开始按钮
+        $('#button1').click(function () {
+            window.location.reload();
+        });
+
+        //外挂按钮
+        $('#button2').click(function () {
+            if (flag) {
+                flag = 0;
+                $(this).css({ 'color': 'red' });
+                $(this).text("打开外挂");
+
+            }
+            else {
+                flag = 1;
+                $(this).css({ 'color': 'grey' });
+                $(this).text("关闭外挂");
+            }
+
+        });
+
+
+    </script>
+</body>
+</html>
+

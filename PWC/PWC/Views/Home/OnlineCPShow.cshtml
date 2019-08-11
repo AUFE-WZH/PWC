@@ -1,0 +1,218 @@
+﻿@model PWC.Models.Problem
+@{
+    Layout = "~/Views/Shared/_MyHomePage.cshtml";
+}
+
+<div style="margin-top:70px">
+    <ol class="breadcrumb" style="font-size:25px">
+        <li><a href="/Home/OnlineCon?page=1">竞赛</a></li>
+        <li><a href="/Home/OnlineCP?id=@Convert.ToInt32(Session["OnlineContestid"])">问题</a></li>
+        <li class="active">竞赛列表</li>
+    </ol>
+
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#Information" data-toggle="tab">题目信息</a></li>
+        <li><a href="#Result" data-toggle="tab">运行结果</a></li>
+
+    </ul>
+    <div id="myTabContent" class="tab-content">
+
+        <div class="tab-pane fade in active" id="Information">
+
+            <div class="jumbotron">
+                <center>
+                    <h1>@Model.Name</h1>
+                    <div class="problem-ins" style="font-size:15px">
+                        时间限制：<span class="editable highlight">@Model.TimeLimit</span> ms &nbsp;|&nbsp;
+                        内存限制：<span class="editable highlight">@Model.MemLimit</span> KB
+                    </div>
+                    <div class="problem-ins" style="font-size:15px">
+                        难度：<span class="editable highlight">@Model.Difficulty</span> &nbsp;|&nbsp;
+                        评价：<span class="editable highlight">@(Model.Evaluate)星</span>
+                    </div>
+                </center>
+                <h2>题目描述</h2>
+                <div class="content">
+                    <p>
+                        <font size="3" face="Times New Roman" style="font-size:20px">
+                            @Model.Describe
+                        </font>
+                    </p>
+                </div>
+                <h2>输入</h2>
+                <div class="content">
+                    <p>
+                        <font size="3" face="Times New Roman" style="font-size:20px">
+                            @Model.Input
+                        </font>
+                    </p>
+                </div>
+                <h2>输出</h2>
+                <div class="content">
+                    <p>
+                        <font size="3" face="Times New Roman" style="font-size:20px">
+                            @Model.Output
+                        </font>
+                    </p>
+                </div>
+                <h2>样例输入</h2>
+                <pre class="content" style="text-align:left"><code class="sampledata" style="font-size:20px">@Model.SampleInput</code></pre>
+                <h2>样例输出</h2>
+                <pre class="content"><code class="sampledata" style="font-size:20px">@Model.SampleOutput</code></pre>
+                <h2>来源</h2>
+                <div class="content" style="font-size:20px">
+                    @Model.Source
+                </div>
+
+                @{
+                    if (Convert.ToInt32(Session["OCState"]) == 1)
+                    {
+                        <h2>代码提交</h2>
+                        <div class="content" style="font-size:20px">
+                            <button type="button" class="btn btn-primary btn-lg " data-toggle="modal" data-target="#ProSubmit">提交</button>
+                        </div>
+                    }
+                }
+                
+            </div>
+
+            <div id="ProSubmit" class="modal fade" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <button class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-title">
+                            <h1 class="text-center">代码(必填)</h1>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-group" action="/Home/AnswerPro" method="post">
+                                <input type="text" value="@Model.ID" name="id" hidden />
+                                <div class="form-group">
+                                    <code><textarea class="form-control" rows="25" name="Code"></textarea></code>
+                                </div>
+                                <div class="form-group">
+                                    <input id="Eva" value="5" type="text" name="Eva" hidden />
+                                    <label for="Evaluate">题目评价(必填)</label>
+                                    <a href="javascript:click(1)"><img src="~/Content/img/star.png" id="star1" onmouseover="over(1)" onmouseout="out(1)" /></a>
+                                    <a href="javascript:click(2)"><img src="~/Content/img/star.png" id="star2" onmouseover="over(2)" onmouseout="out(2)" /></a>
+                                    <a href="javascript:click(3)"><img src="~/Content/img/star.png" id="star3" onmouseover="over(3)" onmouseout="out(3)" /></a>
+                                    <a href="javascript:click(4)"><img src="~/Content/img/star.png" id="star4" onmouseover="over(4)" onmouseout="out(4)" /></a>
+                                    <a href="javascript:click(5)"><img src="~/Content/img/star.png" id="star5" onmouseover="over(5)" onmouseout="out(5)" /></a>
+                                    <span id="message"></span>
+                                </div>
+
+                                <div class="text-right">
+                                    <button class="btn btn-primary" type="submit">提交</button>
+                                    <button class="btn btn-danger" data-dismiss="modal">取消</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="tab-pane fade" id="Result">
+
+        </div>
+    </div>
+
+
+
+</div>
+
+
+
+
+@section bottom{
+
+    <script type="text/javascript">
+    var check = 0;//该变量是记录当前选择的评分
+
+    /*over()是鼠标移过事件的处理方法*/
+    function over(param) {
+        if (param == 1) {
+            $("#star1").attr("src", "/Content/img/star_red.png");//第一颗星星亮起来，下面以此类推
+            $("#message").html("很差1星");//设置提示语，下面以此类推
+        } else if (param == 2) {
+            $("#star1").attr("src", "/Content/img/star_red.png");
+            $("#star2").attr("src", "/Content/img/star_red.png");
+            $("#message").html("比较差2星");
+        } else if (param == 3) {
+            $("#star1").attr("src", "/Content/img/star_red.png");
+            $("#star2").attr("src", "/Content/img/star_red.png");
+            $("#star3").attr("src", "/Content/img/star_red.png");
+            $("#message").html("一般3星");
+        } else if (param == 4) {
+            $("#star1").attr("src", "/Content/img/star_red.png");
+            $("#star2").attr("src", "/Content/img/star_red.png");
+            $("#star3").attr("src", "/Content/img/star_red.png");
+            $("#star4").attr("src", "/Content/img/star_red.png");
+            $("#message").html("比较好4星");
+        } else if (param == 5) {
+            $("#star1").attr("src", "/Content/img/star_red.png");
+            $("#star2").attr("src", "/Content/img/star_red.png");
+            $("#star3").attr("src", "/Content/img/star_red.png");
+            $("#star4").attr("src", "/Content/img/star_red.png");
+            $("#star5").attr("src", "/Content/img/star_red.png");
+            $("#message").html("很好5星");
+        }
+    }
+    /*out 方法是鼠标移除事件的处理方法，当鼠标移出时，恢复到我的打分情况*/
+    function out() {
+        if (check == 1) {//打分是1，设置第一颗星星亮，其他星星暗，其他情况以此类推
+            $("#star1").attr("src", "/Content/img/star_red.png");
+            $("#star2").attr("src", "/Content/img/star.png");
+            $("#star3").attr("src", "/Content/img/star.png");
+            $("#star4").attr("src", "/Content/img/star.png");
+            $("#star5").attr("src", "/Content/img/star.png");
+            $("#message").html("");
+        } else if (check == 2) {
+            $("#star1").attr("src", "/Content/img/star_red.png");
+            $("#star2").attr("src", "/Content/img/star_red.png");
+            $("#star3").attr("src", "/Content/img/star.png");
+            $("#star4").attr("src", "/Content/img/star.png");
+            $("#star5").attr("src", "/Content/img/star.png");
+            $("#message").html("");
+        } else if (check == 3) {
+            $("#star1").attr("src", "/Content/img/star_red.png");
+            $("#star2").attr("src", "/Content/img/star_red.png");
+            $("#star3").attr("src", "/Content/img/star_red.png");
+            $("#star4").attr("src", "/Content/img/star.png");
+            $("#star5").attr("src", "/Content/img/star.png");
+            $("#message").html("");
+        } else if (check == 4) {
+            $("#star1").attr("src", "/Content/img/star_red.png");
+            $("#star2").attr("src", "/Content/img/star_red.png");
+            $("#star3").attr("src", "/Content/img/star_red.png");
+            $("#star4").attr("src", "/Content/img/star_red.png");
+            $("#star5").attr("src", "/Content/img/star.png");
+            $("#message").html("");
+        } else if (check == 5) {
+            $("#star1").attr("src", "/Content/img/star_red.png");
+            $("#star2").attr("src", "/Content/img/star_red.png");
+            $("#star3").attr("src", "/Content/img/star_red.png");
+            $("#star4").attr("src", "/Content/img/star_red.png");
+            $("#star5").attr("src", "/Content/img/star_red.png");
+            $("#message").html("");
+        } else if (check == 0) {
+            $("#star1").attr("src", "/Content/img/star.png");
+            $("#star2").attr("src", "/Content/img/star.png");
+            $("#star3").attr("src", "/Content/img/star.png");
+            $("#star4").attr("src", "/Content/img/star.png");
+            $("#star5").attr("src", "/Content/img/star.png");
+            $("#message").html("");
+        }
+    }
+    /*click()点击事件处理，记录打分*/
+    function click(param) {
+        check = param;//记录当前打分
+        var Eva = document.getElementById("Eva");
+        Eva.value = check;
+        out();//设置星星数
+    }
+    </script>
+}

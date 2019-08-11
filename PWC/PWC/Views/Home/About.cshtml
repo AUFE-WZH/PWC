@@ -1,0 +1,818 @@
+﻿@{
+    Layout = "~/Views/Shared/_MyHomePage.cshtml";
+}
+
+<div style="margin-top:70px; font-size:18px">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#Service" data-toggle="tab">服务条款</a></li>
+        <li><a href="#Instructions" data-toggle="tab">使用说明</a></li>
+        <li><a href="#Advance" data-toggle="tab">进阶指南</a></li>
+    </ul>
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade in active" id="Service">
+            <h1 style="text-align:center">服务条款</h1>
+            <div class="medium-9 columns" data-reactid="21">
+                <div class="section visible" data-reactid="22">
+                    <div class="section__body" data-reactid="23">
+                        <div class="typo" data-reactid="24">
+                            <div data-reactid="25">
+                                <h1>1. 欢迎使用 AUFEOJ</h1>
+                                <p>注册 AUFEOJ 帐户和/或使用 AUFEOJ 提供的服务（包括网页提供的在线服务和题目评测的非在线服务等），即表示您已同意本条款。请您务必审慎阅读，充分理解条款各项内容。</p>
+                                <h1>2. 使用服务</h1>
+                                <p>您必须遵守各项服务中提供的所有政策。</p>
+                                <p>请勿滥用我们的服务。如，请勿干扰我们的服务，或尝试使用除我们提供的界面和指示以外的方法访问这些服务，或使用我们服务中出现的缺陷干扰其他网站或设施的正常运行。您仅能在法律允许的范围内使用我们的服务。</p>
+                                <p>您在使用我们服务时须遵守我们服务器所在地的法律法规，不得利用我们服务从事违法违规行为，包括但不限于：</p>
+                                <ul>
+                                    <li>
+                                        <p>发布、传送、传播、储存危害国家安全统一、破坏社会稳定、违反公序良俗、侮辱、诽谤、淫秽、暴力以及任何违反国家法律法规的内容；</p>
+                                    </li>
+                                    <li>
+                                        <p>发布、传送、传播、储存侵害他人知识产权、商业秘密等合法权利的内容；</p>
+                                    </li>
+                                    <li>
+                                        <p>恶意虚构事实、隐瞒真相以误导、欺骗他人；</p>
+                                    </li>
+                                    <li>
+                                        <p>发布、传送、传播广告信息及垃圾信息；</p>
+                                    </li>
+                                    <li>
+                                        <p>其他法律法规禁止的行为。</p>
+                                    </li>
+                                </ul>
+                                <p>如果您违反了约定，相关国家相关机关或机构可能会对您提起诉讼、进行行政处罚或采取其他制裁措施，AUFEOJ 将给于协助。造成损害的，您应依法予以赔偿，AUFEOJ 不承担任何责任。</p>
+                                <p>如果 AUFEOJ 发现或收到他人举报您发布的信息违反约定，AUFEOJ 有权进行独立判断并采取技术手段予以删除、屏蔽或断开链接。同时，AUFEOJ 有权视用户的行为性质，采取包括但不限于暂停或终止服务，限制、冻结或终止账户使用，追究法律责任等措施。</p>
+                                <h1>3. 版权</h1>
+                                <p>使用我们的服务并不代表您拥有我们的服务或您所访问的内容的任何知识产权。网站上的所有材料（包括但不限于题目内容、用户界面、Wiki）版权均受保护，归 AUFEOJ 所有。除非另有说明，本网站上的材料和服务仅用于个人和非商业用途，未经 AUFEOJ 书面许可，不得复制、修改、创建衍生作品、传播、出版、公开演示、公开展示和分发从本网站获得的任何信息、文件、产品或服务。</p>
+                                <h1>4. 您在我们服务中发布的内容</h1>
+                                <p>我们的某些服务允许您提交内容。您保留对该内容持有的任何知识产权的所有权。</p>
+                                <p>当您上传内容或通过其他方式向我们的服务（包括自定义的域内）提交内容时，您授予 AUFEOJ 使用、持有、存储、复制、修改、创建衍生作品、传播、出版、公开演示、公开展示和分发此内容等权利。您在此许可中授予的权限，仅能用于运营、宣传和改进我们的服务，以及开发新的服务。该项许可在您停止使用我们的服务后依然有效。某些服务可能会向您提供一些方法，用于访问和删除您提供给该服务的内容。对于您提交至我们服务的任何内容，请确保您拥有向我们授予此许可的必要权利。我们有权在未通知您的情况下删除我们认为侵犯了知识产权或违反了相关法律法规的内容。</p>
+                                <h1>5. 对于发布题目的附加条款</h1>
+                                <p>您可以在 AUFEOJ 上创建新题目。您上传到 AUFEOJ 的题目，除了适用于本协议第四条（即“您在我们服务中发布的内容”）条款，还包含以下附加条款（若有冲突的条款，以附加条款中的优先）：</p>
+                                <ul>
+                                    <li>
+                                        <p>您上传到 AUFEOJ 上的题目版权为 AUFEOJ 和您共同拥有，我们会在相关页面或在对其进行分发、传播等操作时标明版权所有者。</p>
+                                    </li>
+                                    <li>
+                                        <p>您不得滥用 AUFEOJ 的发布题目功能，包括但不限于发布大量无意义题目、为题目的测试数据拟定非常不合理的资源占用量等。我们有权在这种情况下拒绝为您提供服务或清除相关数据。</p>
+                                    </li>
+                                    <li>
+                                        <p>AUFEOJ 尊重他人知识产权和合法权益，请您在上传题目前确保拥有题目内容（包括但不限于题目描述、数据、图片等）的著作权及信息网络传播权或者已经取得上述全部权利人的许可并不存在任何著作权纠纷。我们有权在不通知的情况下删除被认为侵权的题目。</p>
+                                    </li>
+                                    <li>
+                                        <p>您可以申请将自己上传的优质题目合并到官方题库。在这种情况下，AUFEOJ 的管理员会对您创建的题目的内容（包括但不限于评测数据等对用户不可见的信息）进行人工审核和适当修改以确认其符合国家基本法律法规。</p>
+                                    </li>
+                                    <li>
+                                        <p>我们会维护服务的稳定，并对数据（包括您发布的题目）进行定期的备份，并尽量在关闭服务前通知您，但我们不对任何题目提供永久存储或保留的承诺，出于安全的考虑推荐您另行备份题目内容。</p>
+                                    </li>
+                                </ul>
+                                <h1>6. 对于讨论、评论、题解的附加条款</h1>
+                                <p>您可以在 AUFEOJ 上创建讨论、创建评论（含讨论的评论、比赛的评论等）或题解，或回复评论或题解。您在进行这些操作时须遵守本协议第二条（即“使用服务”）和以下规定，否则我们有权修改或删除相关内容：</p>
+                                <ul>
+                                    <li>
+                                        <p>不得混淆讨论和题解，包括但不限于将题解发布到讨论中。</p>
+                                    </li>
+                                    <li>
+                                        <p>不得发布会干扰 AUFEOJ 用户界面呈现的内容。</p>
+                                    </li>
+                                    <li>
+                                        <p>不得发布包含恶意代码、指向恶意网站或 AUFEOJ 明确禁止的网站的链接的内容。</p>
+                                    </li>
+                                    <li>
+                                        <p>发布含有代码的内容时，应当将代码放置于代码区块中。</p>
+                                    </li>
+                                    <li>
+                                        <p>不得发布可读性差（例如，对于复杂算法无详细注释）的题解代码。</p>
+                                    </li>
+                                </ul>
+                                <h1>7. 对于域的附加条款</h1>
+                                <p>您可以在 AUFEOJ 上创建和访问自定义域。在创建域或在自定义域中进行操作时，除了适用于本协议第四条（即“您在我们服务中发布的内容”）条款，还包含以下附加条款（若有冲突的条款，以附加条款中的优先）：</p>
+                                <ul>
+                                    <li>
+                                        <p>您不得使用误导性或抢占性质的域标识符或域名称，包括但不限于冒充为某组织。我们有权在不通知的情况下删除此类域和域下内容，且不提供数据恢复。</p>
+                                    </li>
+                                    <li>
+                                        <p>您在域下发布的内容除了受 AUFEOJ 管理外，还受域管理员管辖。具有管辖权限的实体有权对您发布的任何内容进行不加通知的修改或删除。对于此类内容删除，我们不提供数据恢复服务。</p>
+                                    </li>
+                                    <li>
+                                        <p>即使域禁止访客访问，我们也能查看和管理您在域下发布的内容。我们有权依据本条款对域下内容进行管理。</p>
+                                    </li>
+                                </ul>
+                                <h1>8. 隐私保护</h1>
+                                <p>AUFEOJ 隐私声明介绍了您在使用我们的服务时，我们会如何处理您的个人数据和保护您的隐私。使用我们的服务即表示您同意 AUFEOJ 可以按照我们的隐私权政策使用您的个人数据。</p>
+                                <h1>9. 服务保证</h1>
+                                <p>我们对服务内容、服务的具体功能，或其可靠性、可用性或满足您需要的能力不作任何承诺。我们的服务是按照现有技术和条件所能达到的现状提供的。我们会尽最大努力向您提供服务，确保服务的连贯性和安全性。但我们不能随时预见和防范法律、技术以及其他风险，包括但不限于不可抗力、病毒、木马、黑客攻击、系统不稳定、第三方服务瑕疵、政府行为等原因可能导致的服务中断、数据丢失以及其他的损失和风险。</p>
+                                <p>另外，我们始终在不断更改和改进我们的服务。我们可能会增加或删除功能，也可能暂停或彻底停止某项服务。若服务彻底停止，我们不承诺提供服务数据备份。</p>
+                                <h1>10. 关于本条款</h1>
+                                <p>我们可以修改上述条款或任何适用于某项服务的附加条款，您应当定期查阅本条款。所有修改的适用不具有追溯力，且会在公布十四天或更长时间后方始生效。但是，对服务新功能的特别修改或由于法律原因所作的修改将立即生效。如果您不同意服务的修改条款，应停止使用服务。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section__footer" data-reactid="26"><div class="supplementary" data-reactid="27"></div></div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="Instructions">
+            <hr />
+            <center>
+                <font size="+3">AUFEOJ Online Judge FAQ</font>
+            </center>
+            <hr />
+            <p>
+                <font color="green">Q</font>:程序怎样取得输入、进行输出?<br>
+                <font color="red">A</font>:你的程序应该从标准输入 stdin('Standard Input')获取输入，并将结果输出到标准输出 stdout('Standard Output').例如,在C语言可以使用 'scanf' ，在C++可以使用'cin' 进行输入；在C使用 'printf' ，在C++使用'cout'进行输出.
+            </p>
+            <p>
+                用户程序不允许直接读写文件, 如果这样做可能会判为运行时错误 "<font color="green">Runtime Error</font>"。<br>
+                <br>
+                下面是 A+B题的参考答案
+            </p>
+            <hr />
+            <p>
+                C++:<br>
+            </p>
+            <pre style="font-weight:bold;font-size:18px;">
+
+#include &lt;iostream&gt;
+using namespace std;
+int main(){
+    int a,b;
+    while(cin &gt;&gt; a &gt;&gt; b)
+        cout &lt;&lt; a+b &lt;&lt; endl;
+	return 0;
+}
+            </pre>
+            <hr />
+            <p>
+                C:<br>
+            </p>
+            <pre style="font-weight:bold;font-size:18px;">
+
+#include &lt;stdio.h&gt;
+int main(){
+    int a,b;
+    while(scanf("%d %d",&amp;a, &amp;b) != EOF)
+        printf("%d\n",a+b);
+	return 0;
+}
+            </pre>
+            <hr />
+            <font color="green">Q</font>
+            :系统返回信息都是什么意思?
+            <br />
+            <font color="red">A</font>
+            :详见下述:
+            <br />
+            <p><font color="blue">Pending</font> : 系统忙，你的答案在排队等待. </p>
+            <p><font color="blue">Pending Rejudge</font>: 因为数据更新或其他原因，系统将重新判你的答案.</p>
+            <p>
+                <font color="blue">Compiling</font> : 正在编译.<br>
+            </p>
+            <p>
+                <font color="blue">Running &amp; Judging</font>: 正在运行和判断.<br>
+            </p>
+            <p>
+                <font color="blue">Accepted</font> : 程序通过!<br>
+                <br>
+                <font color="blue">Presentation Error</font> : 答案基本正确，但是格式不对。<br>
+                <br>
+                <font color="blue">Wrong Answer</font> : 答案不对，仅仅通过样例数据的测试并不一定是正确答案，一定还有你没想到的地方.<br>
+                <br>
+                <font color="blue">Time Limit Exceeded</font> : 运行超出时间限制，检查下是否有死循环，或者应该有更快的计算方法。<br>
+                <br>
+                <font color="blue">Memory Limit Exceeded</font> : 超出内存限制，数据可能需要压缩，检查内存是否有泄露。<br>
+                <br>
+                <font color="blue">Output Limit Exceeded</font>: 输出超过限制，你的输出比正确答案长了两倍.<br>
+                <br>
+                <font color="blue">Runtime Error</font> : 运行时错误，非法的内存访问，数组越界，指针漂移，调用禁用的系统函数。请点击后获得详细输出。<br>
+            </p>
+            <p>
+                <font color="blue">Compile Error</font> : 编译错误，请点击后获得编译器的详细输出。<br>
+                <br>
+            </p>
+            <hr />
+        </div>
+        <div class="tab-pane fade" id="Advance">
+            <div style="margin:15px">
+                <hr />
+                <p style="text-align:center;font-size:30px">
+                    <strong>ACM进阶计划</strong> 
+                </p>
+                <hr />
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    ACM队不是为了一场比赛而存在的，为的是队员的整体提高。
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    大学期间，ACM队队员必须要学好的课程有：
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                </p><ul>
+                    <li>
+                        <span>C/C++两种语言</span>
+                    </li>
+                    <li>
+                        <span>高等数学</span>
+                    </li>
+                    <li>
+                        <span>线性代数</span>
+                    </li>
+                    <li>
+                        <span>数据结构</span>
+                    </li>
+                    <li>
+                        <span>离散数学</span>
+                    </li>
+                    <li>
+                        <span>数据库原理</span>
+                    </li>
+                    <li>
+                        <span>操作系统原理</span>
+                    </li>
+                    <li>
+                        计算机组成原理
+                    </li>
+                    <li>
+                        人工智能
+                    </li>
+                    <li>
+                        &nbsp;编译原理
+                    </li>
+                    <li>
+                        算法设计与分析
+                    </li>
+                </ul>
+
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    除此之外，我希望你们能掌握一些其它的知识，因为知识都是相互联系，触类旁通的。
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    以下学习计划每学期中的内容不分先后顺序，虽说是为立志于学习ACM的同学列的知识清单，但内容不限于ACM的知识。英语之类与专业相距较远的课程请自行分配时间，这里不再列举。
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    大一上学期：
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    必学：
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    1.&nbsp;C语言基础语法必须全部学会
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    a)&nbsp;推荐“语言入门”分类20道题以上
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    b)&nbsp;提前完成C语言课程设计
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    2.&nbsp;简单数学题（推荐“数学”分类20道以上）
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    需要掌握以下基本算法：
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    a)&nbsp;欧几里德算法求最大公约数
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    b)&nbsp;筛法求素数
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    c)&nbsp;康托展开
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    d)&nbsp;逆康托展开
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    e)&nbsp;同余定理
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    f)&nbsp;次方求模
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    3.&nbsp;计算几何初步
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    a)&nbsp;三角形面积
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    b)&nbsp;三点顺序
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    4.&nbsp;学会简单计算程序的时间复杂度与空间复杂度
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    5.&nbsp;二分查找法
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    6.&nbsp;简单的排序算法
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    a)&nbsp;冒泡排序法
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    b)&nbsp;插入排序法
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    7.&nbsp;贪心算法经典题目
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    8.&nbsp;高等数学
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    以下为选修：
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    9.&nbsp;学会使用简单的DOS命令（较重要）
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    a)&nbsp;color/dir/copy/shutdown/mkdir(md)/rmdir(rd)/attrib/cd/
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    b)&nbsp;知道什么是绝对路径与相对路径
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    c)&nbsp;学会使用C语言调用DOS命令
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    d)&nbsp;学会在命令提示符下调用你自己用C语言编写的程序，并使用命令行参数给自己的程序传参（比如自己制作一个copyfile.exe实现与copy命令基本功能一致的功能）
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    e)&nbsp;学会编写bat批处理文件
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    10.&nbsp;学会Windows系统的一些小知识，如设置隐藏文件，autoRun.inf的设置等。
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    11.&nbsp;学会编辑注册表（包括使用注册表编辑器regedit和使用DOS命令编辑注册表）
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    12.&nbsp;学会使用组策略管理器管理(gpedit.msc)组策略。
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    大一下学期：
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    1.&nbsp;掌握C++部分语法，如引用类型，函数重载等，基本明白什么是类。
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    2.&nbsp;学会BFS与DFS
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    a)&nbsp;迷宫求解（最少步数）
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    b)&nbsp;水池数目(NYOJ27)
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    c)&nbsp;图像有用区域(NYOJ92)
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    d)&nbsp;树的前序中序后序遍历
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    3.&nbsp;动态规划（15题以上），要学会使用循环的方法写动态规划，同时也要学会使用记忆化搜索的方法。
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    a)&nbsp;最大子串和
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    b)&nbsp;最长公共子序列
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    c)&nbsp;最长单调递增子序列(O(n)与O(n&nbsp;log&nbsp;n)算法都需要掌握)
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    d)&nbsp;01背包
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    e)&nbsp;RMQ算法
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    4.&nbsp;学会分析与计算复杂程序的时间复杂度
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    5.&nbsp;学会使用栈与队列等线性存储结构
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    6.&nbsp;学会分治策略
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    7.&nbsp;排序算法
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    a)&nbsp;归并排序
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    b)&nbsp;快速排序
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    c)&nbsp;计数排序
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    8.&nbsp;数论
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    a)&nbsp;扩展欧几里德算法
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    b)&nbsp;求逆元
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    c)&nbsp;同余方程
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    d)&nbsp;中国剩余定理
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    9.&nbsp;博弈论
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    a)&nbsp;博弈问题与SG函数的定义
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    b)&nbsp;多个博弈问题SG值的合并
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    10.&nbsp;图论：
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    a)&nbsp;图的邻接矩阵与邻接表两种常见存储方式
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    b)&nbsp;欧拉路的判定
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    c)&nbsp;单最短路bellman-ford算法dijkstra算法。
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    d)&nbsp;最小生成树的kruskal算法与prim算法。
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    11.&nbsp;学会使用C语言进行网络编程与多线程编程
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    12.&nbsp;高等数学
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    13.&nbsp;线性代数
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    a)&nbsp;明确线性代数的重要性，首先是课本必须学好
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    b)&nbsp;编写一个Matrix类，进行矩阵的各种操作，并求编写程序解线性方程组。
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    c)&nbsp;推荐做一两道“矩阵运算”分类下的题目。
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    以下为选修，随便选一两个学学即可：
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    14.&nbsp;（较重要）使用C语言或C++编写简单程序来调用一些简单的windows&nbsp;API，或者在linux下进行linux系统调用，其目的是明白什么是API（应用程序接口）。
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    15.&nbsp;网页设计
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    a)&nbsp;学习静态网页技术(html+css+javascript)
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    b)&nbsp;较具有艺术细胞的可以试试Photoshop
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    c)&nbsp;php或其它动态网页技术
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    16.&nbsp;学习matlab，如果想参加数学建模大赛的话，需要学这个软件。
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    大一假期（如果留校集训）
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    1.&nbsp;掌握C++语法，并熟练使用STL
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    2.&nbsp;试着实现STL的一些基本容器和函数，使自己基本能看懂STL源码
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    3.&nbsp;图论
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    a)&nbsp;使用优先队列优化Dijkstra和Prim
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    b)&nbsp;单源最短路径之SPFA
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    c)&nbsp;差分约束系统
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    d)&nbsp;多源多点最短路径之FloydWarshall算法
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    e)&nbsp;求欧拉路(圈套圈算法）
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    4.&nbsp;进行复杂模拟题训练
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    5.&nbsp;拓扑排序
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    6.&nbsp;动态规划进阶
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    a)&nbsp;完全背包、多重背包等各种背包问题（参见背包九讲）
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    b)&nbsp;POJ上完成一定数目的动态规划题目
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    c)&nbsp;状态压缩动态规划
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    d)&nbsp;树形动态规划
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    7.&nbsp;搜索
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    a)&nbsp;回溯法熟练应用
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    b)&nbsp;复杂的搜索题目练习
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    c)&nbsp;双向广度优先搜索
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    d)&nbsp;启发式搜索(包括A*算法，如八数码问题)
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    8.&nbsp;计算几何
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    a)&nbsp;判断点是否在线段上
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    b)&nbsp;判断线段相交
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    c)&nbsp;判断矩形是否包含点
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    d)&nbsp;判断圆与矩形关系
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    e)&nbsp;判断点是否在多边形内
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    f)&nbsp;判断点到线段的最近点
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    g)&nbsp;计算两个圆的公切线
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    h)&nbsp;求矩形的并的面积
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    i)&nbsp;求多边形面积
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    j)&nbsp;求多边形重心
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    k)&nbsp;求凸包
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    选修
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    9.&nbsp;可以学习一种C++的开发框架来编写一些窗体程序玩玩（如MFC,Qt等)。
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    10.&nbsp;学习使用C或C++连接数据库。
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    大二一整年：
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    1.&nbsp;数据结构
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    a)&nbsp;单调队列
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    b)&nbsp;堆
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    c)&nbsp;并查集
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    d)&nbsp;树状数组
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    e)&nbsp;哈希表
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    f)&nbsp;线段树
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    g)&nbsp;字典树
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    2.&nbsp;图论
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    a)&nbsp;强连通分量
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    b)&nbsp;双连通分量（求割点，桥）
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    c)&nbsp;强连通分量与双连通分量缩点
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    d)&nbsp;LCA、LCA与RMQ的转化
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    e)&nbsp;二分图匹配
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    i.&nbsp;二分图最大匹配
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    ii.&nbsp;最小点集覆盖
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    iii.&nbsp;最小路径覆盖
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    iv.&nbsp;二分图最优匹配
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    v.&nbsp;二分图多重匹配
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    f)&nbsp;网络流
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    i.&nbsp;最大流的基本SAP
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    ii.&nbsp;最大流的ISAP或者Dinic等高效算法（任一）
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    iii.&nbsp;最小费用最大流
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    iv.&nbsp;最大流最小割定理
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    3.&nbsp;动态规划多做题提高（10道难题以上）
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    4.&nbsp;数论
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    a)&nbsp;积性函数的应用
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    b)&nbsp;欧拉定理
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    c)&nbsp;费马小定理
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    d)&nbsp;威乐逊定理
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    5.&nbsp;组合数学
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    a)&nbsp;群论基础
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    b)&nbsp;Polya定理与计数问题
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    c)&nbsp;Catalan数
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    6.&nbsp;计算几何
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    a)&nbsp;各种旋转卡壳相关算法
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    b)&nbsp;三维计算几何算法
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    7.&nbsp;理解数据库原理，学会SQL语句
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    8.&nbsp;学好计算机组成原理
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    9.&nbsp;学习Transact-SQL语言，学会使用触发器，存储过程，学会数据库事务等。
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    10.&nbsp;图论二
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    a)&nbsp;网络流的各种构图训练（重要）
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    b)&nbsp;最小割与最小点权覆盖等的关系（详见《最小割模型在信息学竞赛中的应用》一文）
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    c)&nbsp;次小生成树
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    d)&nbsp;第k短路
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    e)&nbsp;最小比率生成树
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    11.&nbsp;线性规划
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    12.&nbsp;动态规划更高级进阶
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    13.&nbsp;KMP算法
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    14.&nbsp;AC自动机理论与实现
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    15.&nbsp;博弈论之Alpha-beta剪枝
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    选修，有相关兴趣的可以学一下：
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    16.&nbsp;自学C#或Java做一个项目，比如C++/C#/Java考试系统之类的。
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    17.&nbsp;先做一些小游戏玩玩，然后可以学一下DirectX或者OpenGL，或者可以试试XNA游戏框架。
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    18.&nbsp;了解一下游戏引擎相关的知识
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    其中的寒假假期最好：
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    1.&nbsp;自学完离散数学
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    2.&nbsp;自学概率论的部分章节
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    3.&nbsp;自学操作系统部分章节
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    大三、
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    1.&nbsp;巩固之前的知识，进行一遍大复习。
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    2.&nbsp;一些如蚁群算法，遗传算法，模拟退火算法等人工智能方面应用较广的随机性算法。
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    3.&nbsp;把编译原理上学的东西应用到编程中：如DFA,NFA，还有语法分析的各种方法等。
+                </p>
+                <p class="p" align="justify" style="text-indent:0pt;text-align:justify;">
+                    当你按上面那些一步步走过来时你已经是牛人了，后面要学的东西，就是由牛人自己来发掘的了。
+                </p>
+                <p class="MsoNormal">
+                    &nbsp;
+                </p>
+                <p>
+                    <br>
+                </p>
+                <p class="p0" style="text-align:justify;font-size:10.5pt;font-family:">
+                    <span style="font-size:10.5pt;font-family:宋体;"></span>
+                </p>
+                <p class="p0" style="text-align:justify;font-size:10.5pt;font-family:">
+                    <span style="font-size:10.5pt;font-family:宋体;"></span>
+                </p>
+
+
+                <div>
+                    <br>
+                </div>
+
+                <div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

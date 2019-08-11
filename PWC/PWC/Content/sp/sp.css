@@ -1,0 +1,74 @@
+#sp {
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    
+    z-index: 1001;
+}
+
+#sp #sp-wrapper {
+	display: none;
+}
+
+#sp #sp-body {
+    width: 250px;
+    text-align: center;
+}
+
+#sp #sp-bottom {
+    height: 20px;
+    line-height: 20px;
+    width: 250px;
+    background: #000;
+    
+    border-radius: 15px 15px 0px 0px;
+    -ms-border-radius: 15px 15px 0px 0px;
+    -moz-border-radius: 15px 15px 0px 0px;
+    -webkit-border-radius: 15px 15px 0px 0px;
+    -khtml-border-radius: 15px 15px 0px 0px;
+    
+    opacity: 0.4;
+    
+    text-align: center;
+}
+
+#sp #sp-bottom #sp-shown-hidden {
+    text-shadow: 1px 1px 0px #444;
+    cursor: pointer;
+    color:#FFFFFF;
+}
+
+#sp-msgbox {
+    width: 251px;
+    
+    position: relative;
+    left: -180px;
+    top: 25px;
+    
+    text-shadow: 1px 1px 0px #444;
+    line-height: 18px;
+}
+
+#sp-msg {
+    width: 260px;
+    padding: 10px;
+    
+    background: url("bg.png");
+    border: 1px solid #595956;
+    border-bottom: none;
+    
+    border-radius: 6px 6px 6px 6px;
+    -ms-border-radius: 6px 6px 6px 6px;
+    -moz-border-radius: 6px 6px 6px 6px;
+    -webkit-border-radius: 6px 6px 6px 6px;
+    -khtml-border-radius: 6px 6px 6px 6px;
+    
+    color:#FFFFFF;
+}
+
+#sp-msgborder {
+    width: 251px;
+    height: 8px;
+    background: url("border.png");
+    margin: -1px 6px 0 6px;
+}

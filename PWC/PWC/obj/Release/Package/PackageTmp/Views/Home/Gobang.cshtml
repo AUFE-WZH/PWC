@@ -1,0 +1,154 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>五子棋游戏</title>
+</head>
+<body>
+    <canvas id="canvas" width="400" height="400"></canvas>
+    <div>
+        <p id="p"></p> <button id="button">重新开始</button>
+    </div>
+
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script>
+        //1:黑棋可以落子，2：白棋可以落子
+        var blorwh = 1;
+        document.getElementById("p").innerHTML = "黑棋落子！";
+
+        var matrix =
+        [
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        ];
+        var canv = document.getElementById("canvas");
+        var ctx = canv.getContext("2d");
+
+        //画棋盘
+        ctx.beginPath();
+        for (var i = 0; i < 19; i++) {
+            ctx.moveTo(10 + i * 20, 10);
+            ctx.lineTo(10 + i * 20, 370);
+            ctx.moveTo(10, 10 + i * 20);
+            ctx.lineTo(370, 10 + i * 20);
+        }
+        ctx.stroke();
+
+        //重新开始监听
+        $('#button').click(function () {
+            window.location.reload();
+        });
+
+        //鼠标点击监听
+        $("#canvas").click(function (event) {
+            //落子画图变量
+            var arcPosX, arcPosY;
+            //棋盘数组变量
+            var mtxPosX, mtxPosY;
+            //获胜标志位
+            var winflag = 0;
+
+            //设置显示位置
+            for (var x = 0; x < 19; x++) {
+                if ((Math.abs(event.offsetX - (10 + x * 20))) < 10) {
+                    arcPosX = 10 + x * 20;
+                    mtxPosX = x;
+                }
+                if ((Math.abs(event.offsetY - (10 + x * 20))) < 10) {
+                    arcPosY = 10 + x * 20;
+                    mtxPosY = x;
+                }
+            }
+
+            //判定是否可以落子
+            if ((typeof (mtxPosX) != "undefined") && (typeof (mtxPosY) != "undefined") && matrix[mtxPosX][mtxPosY] == 0) {
+                ctx.beginPath();
+                if (blorwh) {
+                    ctx.fillStyle = "black";
+                    ctx.arc(arcPosX, arcPosY, 10, 0, Math.PI * 2, false);
+                    matrix[mtxPosX][mtxPosY] = 1;
+                }
+                else {
+                    ctx.fillStyle = 'white';
+                    ctx.arc(arcPosX, arcPosY, 9, 0, Math.PI * 2, false);
+                    ctx.stroke();
+                    matrix[mtxPosX][mtxPosY] = 2;
+                }
+                ctx.fill();
+                blorwh = !blorwh;
+            }
+
+            //判断是否获胜
+            var ss =
+            [
+                [-1, -1],
+                [-1, 0],
+                [1, -1],
+                [1, 0],
+                [1, 1],
+                [0, 1],
+                [-1, 1],
+                [-1, 0]
+            ];
+
+            for (var v = 0; v < 8; v++) {
+                var count = 1;
+                var sx = mtxPosX;
+                var sy = mtxPosY;
+                for (var w = 0; w < 4; w++) {
+                    sx += ss[v][0];
+                    sy += ss[v][1];
+                    if ((sx >= 0 && sx < 19) && (sy >= 0 && sy < 19)) {
+                        if (matrix[sx][sy] == matrix[mtxPosX][mtxPosY])
+                            count++;
+                    }
+                    else
+                        break;
+                }
+                if (count == 5) {
+                    winflag = 1;
+                    break;
+                }
+
+            }
+
+            //获胜处理
+            if (winflag) {
+                if (blorwh)
+                    alert("white win!!");
+                else
+                    alert("black win!!");
+            }
+
+            //黑白棋落子提示
+            if (blorwh)
+                document.getElementById("p").innerHTML = "黑棋落子！";
+            else
+                document.getElementById("p").innerHTML = "白棋落子！";
+
+        });
+    </script>
+</body>
+</html>

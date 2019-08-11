@@ -1,0 +1,21 @@
+﻿@model PWC.Models.UserProblem
+@{
+    Layout = "~/Views/Shared/_MyHomePage.cshtml";
+}
+
+<div style="margin-top:70px">
+    <ol class="breadcrumb" style="font-size:25px">
+        <li><a href="/Home/Problem?id=@Session["problemid"]&page=1">问题</a></li>
+        <li class="active">运行结果</li>
+    </ol>
+    <div class="panel panel-primary">
+
+        <div class="panel-heading"><p style="font-size:30px ;margin-bottom:0px">Result</p></div>
+        <div class="panel-body">
+                <div>             
+                    <pre style="font-size:20px;font-weight:bold;">@Model.Code</pre>
+                </div>  
+        </div> 
+    </div>
+</div>
+

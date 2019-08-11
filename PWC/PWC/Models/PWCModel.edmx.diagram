@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="997ffe58c5384dbe919740d1bce12d7f" Name="Diagram1">
+        <EntityTypeShape EntityType="PWCModel.Admin" Width="1.5" PointX="8.875" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PWCModel.Answer" Width="1.5" PointX="2.25" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PWCModel.Discuss" Width="1.5" PointX="2.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PWCModel.Notice" Width="1.5" PointX="10.875" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PWCModel.OnlineContest" Width="1.5" PointX="10.875" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PWCModel.Problem" Width="1.5" PointX="6.75" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PWCModel.User" Width="1.5" PointX="4.75" PointY="4.125" IsExpanded="true" />
+        <AssociationConnector Association="PWCModel.FK_Notice_Admin" ManuallyRouted="false" />
+        <AssociationConnector Association="PWCModel.FK_OnlineContest_Admin" ManuallyRouted="false" />
+        <AssociationConnector Association="PWCModel.FK_Answer_Discuss" ManuallyRouted="false" />
+        <AssociationConnector Association="PWCModel.FK_Answer_User" ManuallyRouted="false" />
+        <AssociationConnector Association="PWCModel.FK_Discuss_User" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="PWCModel.Record" Width="1.5" PointX="12.75" PointY="6.25" />
+        <EntityTypeShape EntityType="PWCModel.RecordUser" Width="1.5" PointX="10.625" PointY="6.25" />
+        <AssociationConnector Association="PWCModel.FK_RecordUser_Record" />
+        <AssociationConnector Association="PWCModel.FK_RecordUser_User" />
+        <AssociationConnector Association="PWCModel.FK_Problem_Admin" />
+        <EntityTypeShape EntityType="PWCModel.OCProblem" Width="1.5" PointX="8.875" PointY="6.25" />
+        <AssociationConnector Association="PWCModel.FK_OCProblem_OCProblem" />
+        <AssociationConnector Association="PWCModel.FK_OCProblem_Problem" />
+        <EntityTypeShape EntityType="PWCModel.Result" Width="1.5" PointX="2.25" PointY="0.5" />
+        <EntityTypeShape EntityType="PWCModel.ProblemType" Width="1.5" PointX="6.5" PointY="6.25" />
+        <AssociationConnector Association="PWCModel.FK_Problem_ProblemType" />
+        <EntityTypeShape EntityType="PWCModel.UserProblem" Width="1.5" PointX="4.75" PointY="0.5" />
+        <AssociationConnector Association="PWCModel.FK_UserProblem_Problem" />
+        <AssociationConnector Association="PWCModel.FK_UserProblem_Result" />
+        <AssociationConnector Association="PWCModel.FK_UserProblem_User" />
+        <EntityTypeShape EntityType="PWCModel.TestData" Width="1.5" PointX="8.75" PointY="4" />
+        <AssociationConnector Association="PWCModel.FK_TestData_Problem" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

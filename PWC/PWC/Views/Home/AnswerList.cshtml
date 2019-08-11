@@ -1,0 +1,149 @@
+﻿@model Tuple<List<PWC.Models.Answer>, PWC.Models.Discuss,List<int> >
+@{
+    Layout = "~/Views/Shared/_MyHomePage.cshtml";
+}
+
+<div style="margin-top:70px">
+    <ol class="breadcrumb" style="font-size:25px">
+        <li><a href="/Home/DiscussList?page=@Session["DLPage"]">讨论</a></li>
+        <li class="active">回答列表</li>
+    </ol>
+    <div class="panel panel-primary">
+
+        <div class="panel-heading"><p style="font-size:30px ;margin-bottom:0px">AnswerList</p></div>
+        <div class="panel-body">
+            <div >
+                <div style="text-align:center">
+                    <h1>@Model.Item2.Title</h1>
+                    <pre style="font-size:20px;font-weight:bold;">@Model.Item2.ProblemDescription</pre>
+                </div>
+            </div>
+            @{
+                if (Convert.ToInt32(Session["Login"]) == 1)
+                {
+                    <div class="pull-right" style="margin:10px">
+                        <div class="content">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AnswerSubmit">发表</button>
+                        </div>
+                    </div>
+                }
+            }
+
+        </div>
+
+        <div id="AnswerSubmit" class="modal fade" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-title">
+                        <h1 class="text-center">评论</h1>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-group" action="/Home/AnswerDiscuss" method="post">
+                            <input type="text" value="@Model.Item2.ID" name="Discussid" hidden />
+                            <input type="text" value="@Session["UId"]" name="Answerid" hidden />
+                            <div class="form-group">
+                                <code><textarea class="form-control" rows="15" name="Answer" style="resize:none;" required></textarea></code>
+                            </div>
+                            <div class="text-right">
+                                <button class="btn btn-primary" type="submit">提交</button>
+                                <button class="btn btn-danger" data-dismiss="modal">取消</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <table class="table">
+            <tr class="info">
+                <th class="header text-center">回复列表</th>
+            </tr>
+            @{
+                if (Model.Item1.Count > 0)
+                {
+                    var bianhao = Model.Item3[2 ]- 3 * Model.Item3[1] +3;
+                    foreach (var item in Model.Item1)
+                    {
+                        <tr>
+                            <td>
+                                <div>
+                                    <div style="font-size:large;font-weight:bold;">@{@bianhao; bianhao--;} 楼、@item.User.Name :</div>
+                                    <pre style="font-size:15px;text-align:center">@item.Content</pre>
+                                    <div style="font-size: 15px; font-weight: bold;">回复时间：@item.AnswerTime</div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+        </table>
+        <center>
+            <nav class="center">
+                <ul class="pagination">
+                    @{
+                        if (Model.Item3[0] > 0)
+                        {
+                            int page = Model.Item3[1];
+                            <li class="page-item">
+                                @{
+
+                            if (page > 1)
+                            {
+                                page = page - 1;
+                                <a href="/Home/AnswerList?id=@Convert.ToInt32(Session["DiscussID"])&page=@page">&lt;&lt;</a>
+                            }
+                            else
+                            {
+                                <a href="/Home/AnswerList?id=@Convert.ToInt32(Session["DiscussID"])&page=@page">&lt;&lt;</a>
+                            }
+                                }
+                            </li>
+                            page = Model.Item3[1];
+                            for (int i = 1; i <= Model.Item3[0]; i++)
+                            {
+                                if (i != page)
+                                {
+                                    <li class="page-item">
+                                        <a href="/Home/AnswerList?id=@Convert.ToInt32(Session["DiscussID"])&page=@i">@i</a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="active page-item">
+                                        <a href="/Home/AnswerList?id=@Convert.ToInt32(Session["DiscussID"])&page=@i">@i</a>
+                                    </li>
+                                }
+
+                            }
+                            page = Model.Item3[1];
+                            <li class="page-item">
+                                @{
+                            if (page < Model.Item3[0])
+                            {
+                                page = page + 1;
+                                <a href="/Home/AnswerList?id=@Convert.ToInt32(Session["DiscussID"])&page=@page">&gt;&gt;</a>
+                            }
+                            else
+                            {
+                                <a href="/Home/AnswerList?id=@Convert.ToInt32(Session["DiscussID"])&page=@page">&gt;&gt;</a>
+                            }
+                                }
+                            </li>
+
+                        }
+
+                    }
+
+                </ul>
+            </nav>
+        </center>
+    </div>
+</div>
+
+
+

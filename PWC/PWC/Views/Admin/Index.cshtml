@@ -1,0 +1,545 @@
+﻿@model PWC.Models.Admin
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AUFEOJ后台</title>
+
+    <link href="~/Content/easyui/themes/default/easyui.css" rel="stylesheet" />
+    <link href="~/Content/easyui/themes/icon.css" rel="stylesheet" />
+    
+
+    <script src="~/Content/easyui/jquery.min.js"></script>
+    <script src="~/Content/easyui/easyui-lang-zh_CN.js"></script>
+    <script src="~/Content/easyui/jquery.easyui.min.js"></script>
+
+    <style>
+        .txt01 {
+            font: Verdana, Geneva, sans-serif,宋体;
+            padding: 3px 2px 2px 2px;
+            border-width: 1px;
+            border-color: #ddd;
+            color: #000;
+        }
+    </style>
+
+    <style type="text/css">
+        .main_form {
+            margin: 32px auto;
+            width: 400px;
+            
+        }
+
+        .input_container {
+            margin-bottom: 32px;
+            font-size: 20px;
+        }
+    </style>
+
+    <script>       
+
+        //弹出信息窗口 title:标题 msgString:提示信息 msgType:信息类型 [error,info,question,warning]
+        function msgShow(title, msgString, msgType) {
+            $.messager.alert(title, msgString, msgType);
+        }
+
+
+        //设置登录窗口
+        function openPwd() {
+            $('#w').window({
+                title: '修改密码',
+                width: 300,
+                modal: true,
+                shadow: true,
+                closed: true,
+                height: 160,
+                resizable: false
+            });
+        }
+        //关闭登录窗口
+        function closePwd() {
+            $('#w').window('close');
+        }
+
+
+
+        //修改密码
+        function serverLogin() {
+            var $newpass = $('#txtNewPass');
+            var $rePass = $('#txtRePass');
+            
+            if ($newpass.val() == '') {
+                msgShow('系统提示', '请输入密码！', 'warning');
+                return false;
+            }
+            if ($rePass.val() == '') {
+                msgShow('系统提示', '请再一次输入密码！', 'warning');
+                return false;
+            }
+
+            if ($newpass.val() != $rePass.val()) {
+                msgShow('系统提示', '两次密码不一至！请重新输入', 'warning');
+                return false;
+            }
+
+            $.post('/Admin/Update?password=' + $newpass.val(), function (flag) {
+                if(flag==1)
+                    msgShow('系统提示', '恭喜，密码修改成功！' , 'info');
+                else
+                    msgShow('系统提示', '对不起，密码修改失败！', 'info');
+                $newpass.val('');
+                $rePass.val('');
+                closePwd();
+            })
+
+        }
+
+        $(function () {
+
+            openPwd();
+
+            $('#editpass').click(function () {
+                $('#w').window('open');
+            });
+
+            $('#btnEp').click(function () {
+                
+                serverLogin();
+            })
+
+            $('#btnCancel').click(function () { closePwd(); })
+
+            $('#loginOut').click(function () {
+                $.messager.confirm('系统提示', '您确定要退出本次登录吗?', function (r) {
+
+                    if (r) {
+                        location.href = '/Admin/loginout';
+                    }
+                });
+            })
+        });
+
+  
+
+        function addTab(title, url, iconCls, myid, type) {
+            if ($('#tt').tabs('exists', title)) {
+                $('#tt').tabs('select', title);
+            } else {
+
+                if (iconCls == "icon-search") {
+                    var content = $('<table id="' + myid + type + '"></table>');
+                }
+                else if (iconCls == "icon-add") {
+                    if (myid == "admin") {
+                        var content = '<div><form id="' + myid + type + '"  class="main_form" action="' + url + '" method="post"> <div class="easyui-panel" title="' + title + '" style="padding:30px 60px;"><div class="input_container"><label for="Name">名字:</label><br /> <input type="text" name="Name" required></div><div class="input_container"><label for="Password">密码:</label><br /><input type="password" name="Password" required></div><div class="input_container"><label for="Sex">性别:</label><br /> <select class="form-control selectpicker" name="Sex" title="性别" required><option value="男">男</option><option value="女">女</option></select></div><div class="input_container"><label for="Age">年龄:</label><br /> <input type="text" name="Age" class="easyui-numberspinner" style="width:80px;" required="required" data-options="min:0,max:100,editable:false" value="20"></div><div class="input_container"><label for="QQ">QQ:</label><br /> <input type="text" name="QQ" required></div><div class="input_container"><label for="Tel">电话:</label><br /> <input type="text" name="Tel" required></div><button class="easyui-linkbutton" iconcls="icon-ok" style="font-size:15px; font-weight:bold;" type="submit">提交</button></div></form></div>';
+                    }
+                    else if(myid == "problem"){
+                        
+                    }
+                    
+                }
+                else if (iconCls == "icon-edit") {
+
+                }
+                else if (iconCls == "icon-remove") {
+
+                }
+                
+                $('#tt').tabs('add', {
+                    title: title,
+                    content: content,
+                    closable: true,
+                    iconCls: iconCls
+                });
+
+                if (myid == "admin") {
+                    if (type == "search") {
+                        $("#" + myid + type + "").datagrid({
+                            url: url,
+                            methord: 'post',
+                            striped: true, //奇偶行是否区分
+                            singleSelect: true,//单选模式
+                            rownumbers: true,//行号
+                            columns: [[
+                            { field: 'Name', title: '姓名', width: 100 },
+                            { field: 'Age', title: '年龄', width: 100, align: 'right' },
+                            { field: 'Sex', title: '性别', width: 100, align: 'right' },
+                            { field: 'QQ', title: 'QQ', width: 200, align: 'right' },
+                            { field: 'Tel', title: '电话', width: 100, align: 'right' }
+
+                            ]]
+                        });
+                    }
+                    else if (type == "add") {
+                        $(function () {
+                            $('#adminadd').form({
+                                success: function (data) {
+                                    $.messager.alert('Info', data, 'info');
+                                }
+                            });
+
+                            
+                        });
+
+                    }
+                    
+                }
+                else if (myid == "user") {
+                    $("#" + myid + type + "").datagrid({
+                        url: url,
+                        methord: 'post',
+                        striped: true, //奇偶行是否区分
+                        singleSelect: true,//单选模式
+                        rownumbers: true,//行号
+                        columns: [[
+                        { field: 'Name', title: '姓名', width: 100 },
+                        { field: 'Age', title: '年龄', width: 100, align: 'right' },
+                        { field: 'Sex', title: '性别', width: 100, align: 'right' },
+                        { field: 'QQ', title: 'QQ', width: 200, align: 'right' },
+                        { field: 'Tel', title: '电话', width: 100, align: 'right' },
+                        { field: 'Introduce', title: '自我介绍', width: 300, align: 'right' },
+                        { field: 'Problems', title: '回答问题数', width: 100, align: 'right' }
+
+                        ]]
+                    });
+                }
+                else if (myid == "problem") {
+                    $("#" + myid + type + "").datagrid({
+                        url: url,
+                        methord: 'post',
+                        striped: true, //奇偶行是否区分
+                        singleSelect: true,//单选模式
+                        rownumbers: true,//行号
+                        columns: [[
+                        { field: 'Name', title: '题目名称', width: 150 },
+                        { field: 'TypeName', title: '类别', width: 100, align: 'right' },
+                        { field: 'TimeLimit', title: '时间限制(ms)', width: 100, align: 'right' },
+                        { field: 'MemLimit', title: '空间限制(KB)', width: 100, align: 'right' },
+                        { field: 'Difficulty', title: '难度', width: 100, align: 'right' },
+                        { field: 'Describe', title: '描述', width: 500, align: 'right' },
+                        { field: 'Input', title: '输入格式', width: 200, align: 'right' },
+                        { field: 'Output', title: '输出格式', width: 200, align: 'right' },
+                        { field: 'SampleInput', title: '样例输入', width: 100, align: 'right' },
+                        { field: 'SampleOutput', title: '样例输出', width: 100, align: 'right' },
+                        { field: 'Source', title: '来源', width: 100, align: 'right' },
+                        { field: 'Evaluate', title: '评价', width: 100, align: 'right' },
+                        { field: 'CreationDate', title: '创建日期', width: 150, align: 'right' },
+                        { field: 'AdminName', title: '创建者', width: 100, align: 'right' },
+                        { field: 'Answers', title: '回答人数', width: 100, align: 'right' }
+
+                        ]]
+                    });
+                }
+                else if (myid == "onlinecontest") {
+                    $("#" + myid + type + "").datagrid({
+                        url: url,
+                        methord: 'post',
+                        striped: true, //奇偶行是否区分
+                        singleSelect: true,//单选模式
+                        rownumbers: true,//行号
+                        columns: [[
+                        { field: 'Name', title: '比赛名称', width: 100 },
+                        { field: 'CompetitionState', title: '比赛状态', width: 100, align: 'right' },
+                        { field: 'Number', title: '比赛人数', width: 100, align: 'right' },
+                        { field: 'StartTime', title: '开始时间', width: 150, align: 'right' },
+                        { field: 'EndTime', title: '结束时间', width: 150, align: 'right' },
+                        { field: 'Place', title: '比赛地点', width: 100, align: 'right' },
+                        { field: 'Describe', title: '描述', width: 500, align: 'right' },
+                        { field: 'AdminName', title: '创建者', width: 100, align: 'right' },
+                        { field: 'CreationDate', title: '创建时间', width: 150, align: 'right' },
+                        { field: 'Problems', title: '题目编号', width: 150, align: 'right' }
+
+                        ]]
+                    });
+                 
+                }
+                else if (myid == "notice") {
+                    $("#" + myid + type + "").datagrid({
+                        url: url,
+                        methord: 'post',
+                        striped: true, //奇偶行是否区分
+                        singleSelect: true,//单选模式
+                        rownumbers: true,//行号
+                        columns: [[
+                        { field: 'Describe', title: '公告描述', width: 500 },
+                        { field: 'State', title: '状态', width: 100, align: 'right' },
+                        { field: 'AdminName', title: '创建者', width: 100, align: 'right' },
+                        { field: 'CreationDate', title: '创建日期', width: 150, align: 'right' }
+                        ]]
+                    });
+                }
+
+
+                
+            }
+        }
+        $(function () {
+            $('#problemadd').form({
+                success: function (data) {
+                    $.messager.alert('Info', data, 'info');
+                }
+            });
+        });
+
+        $(function () {
+            $('#onlinecontestadd').form({
+                success: function (data) {
+                    $.messager.alert('Info', data, 'info');
+                }
+            });
+
+
+        });
+    </script>
+    <script>
+        function getSelected(){
+            var row = $('#myselect').datagrid('getSelected');
+            if (row){
+                alert('ID:'+row.id+"\nname:"+row.name);
+            }
+        }
+        function getSelections() {
+            var ids = "";
+            var rows = $('#myselect').datagrid('getSelections');
+            for (var i = 0; i < rows.length; i++) {
+                ids += rows[i].id + "|";
+            }
+            var selectpro = $("#selectpro").val(ids);
+            alert(selectpro.val());
+        }
+    </script>
+</head>
+<body class="easyui-layout" >
+    <!--上方显示标题和管理员信息-->
+    <div data-options="region:'north'" style="height: 50px; background: #B3DFDA; padding: 10px">
+        <span style="float:right; padding-right:20px;" class="head">
+            欢迎 管理员：@*@Model.Name*@
+            <a id="editpass" class="easyui-linkbutton"> 修改密码 </a>
+            <a id="loginOut" class="easyui-linkbutton"> 安全退出 </a>
+        </span>
+        <span style="padding-left:10px; font-size: 16px; ">
+            <img src="~/Content/img/logo.png" width="20" height="20" align="absmiddle" /> AUFEOJ-安徽财经大学程序设计后台系统
+        </span>
+    </div>
+
+    <!--下方显示版权-->
+    <div data-options="region:'south',split:true" style="height: 30px; background: #D2E0F2; ">
+        <div style="text-align: center; color: #15428B; margin: 0px; padding: 0px; line-height: 23px; font-weight: bold;">版权所有，翻版必究</div>
+    </div>
+    <!--右侧显示一些数据信息-->
+    <div data-options="region:'east',split:true" title="数据查看" style="width: 200px;">   
+        <div class="easyui-calendar" style="width:100%;height:200px;"></div>
+        <div class="easyui-accordion" >
+            <div title="排名系统数据" style="padding:10px">
+                <ul class="easyui-tree">
+                    <li data-options="iconCls:'icon-search'"><a onclick="addTab('排名系统信息', 'xxx', 'icon-search')">查看排名系统信息</a></li>
+                </ul>
+            </div>
+            <div title="判题系统数据" style="padding:10px">
+                <ul class="easyui-tree">
+                    <li data-options="iconCls:'icon-search'"><a onclick="addTab('判题系统信息', 'xxx', 'icon-search')">查看判题系统信息</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--左侧显示管理信息-->
+    <div data-options="region:'west',split:true" title="信息管理" style="width:180px;">
+        <div class="easyui-accordion" data-options="fit:true,border:false">
+            <div title="管理员管理" style="padding:10px;">
+                <ul class="easyui-tree">
+                    <li data-options="iconCls:'icon-search'" ><a onclick="addTab('管理员信息', '/Admin/GetAdminList', 'icon-search', 'admin', 'search')">查看管理员信息</a></li>
+                    <li data-options="iconCls:'icon-add'"><a onclick="addTab('添加管理员', '/Admin/AddAdmin', 'icon-add', 'admin', 'add')">添加管理员</a></li>
+                    <li data-options="iconCls:'icon-remove'"><a onclick="addTab('删除管理员', 'xxx', 'icon-remove')">删除管理员</a></li> 
+                </ul>
+            </div>
+            <div title="用户管理" style="padding:10px;">
+                <ul class="easyui-tree">
+                    <li data-options="iconCls:'icon-search'"><a onclick="addTab('用户信息', '/Admin/GetUserList', 'icon-search', 'user', 'search')">查看用户信息</a></li>
+                    <li data-options="iconCls:'icon-edit'"><a onclick="addTab('修改用户信息', 'xxx', 'icon-edit')">修改用户信息</a></li>
+                    <li data-options="iconCls:'icon-remove'"><a onclick="addTab('删除用户', 'xxx', 'icon-remove')">删除用户</a></li>
+                </ul>
+            </div>
+            <div title="题目管理" style="padding:10px">
+                <ul class="easyui-tree">
+                    <li data-options="iconCls:'icon-search'"><a onclick="addTab('题目信息', '/Admin/GetProblemList', 'icon-search', 'problem', 'search')">查看题目信息</a></li>
+                    <li data-options="iconCls:'icon-edit'"><a onclick="addTab('修改题目信息', 'xxx', 'icon-edit')">修改题目信息</a></li>
+                    <li data-options="iconCls:'icon-add'"><a onclick="addTab('添加题目', '/Admin/AddPro', 'icon-add', 'problem', 'add')">添加题目</a></li>
+                    <li data-options="iconCls:'icon-remove'"><a onclick="addTab('删除题目', 'xxx', 'icon-remove')">删除题目</a></li>
+                </ul>
+            </div>
+            <div title="竞赛管理" style="padding:10px">
+                <ul class="easyui-tree">
+                    <li data-options="iconCls:'icon-search'"><a onclick="addTab('比赛信息', '/Admin/GetOnlineContestList', 'icon-search', 'onlinecontest', 'search')">查看比赛信息</a></li>
+                    <li data-options="iconCls:'icon-edit'"><a onclick="addTab('修改比赛信息', 'xxx', 'icon-edit')">修改比赛信息</a></li>
+                    <li data-options="iconCls:'icon-add'"><a onclick="addTab('添加比赛', 'xxx', 'icon-add')">添加比赛</a></li>
+                    <li data-options="iconCls:'icon-remove'"><a onclick="addTab('删除比赛', 'xxx', 'icon-remove')">删除比赛</a></li>
+                </ul>
+            </div>
+            <div title="公告管理" style="padding:10px">
+                <ul class="easyui-tree">
+                    <li data-options="iconCls:'icon-search'"><a onclick="addTab('公告信息', '/Admin/GetNoticeList', 'icon-search', 'notice', 'search')">查看公告信息</a></li>
+                    <li data-options="iconCls:'icon-edit'"><a onclick="addTab('修改公告信息', 'xxx', 'icon-edit')">修改公告信息</a></li>
+                    <li data-options="iconCls:'icon-add'"><a onclick="addTab('添加公告', 'xxx', 'icon-add')">添加公告</a></li>
+                    <li data-options="iconCls:'icon-remove'"><a onclick="addTab('删除公告', 'xxx', 'icon-remove')">删除公告</a></li>
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+    <!--中部展示内容-->
+    <div data-options="region:'center',title:'数据显示',iconCls:'icon-ok'">
+        
+        <div id="tt" class="easyui-tabs" data-options="fit:true,border:false,plain:true">
+            <div title="欢迎使用" style="padding:20px;overflow:hidden; color:red; ">
+                <h1 style="font-size:24px; text-align:center;">欢迎使用AUFEOJ后台管理系统</h1>
+            </div>
+
+            <!--添加题目-->
+            <div title="添加题目" iconCls="icon-add">
+                <form id="problemadd" action="/Admin/AddPro" class="main_form" method="post">
+                    <div class="easyui-panel" title="添加题目" style="padding:30px 60px;">
+                        <div class="input_container">
+                            <label for="Name">题目名:</label><br /> <input type="text" name="Name" required>
+                        </div>
+                        <div class="input_container">
+                            <label for="TypeName">问题类型:</label><br />
+                            <select class="form-control selectpicker" name="TypeName" title="问题类型" required>
+                                <option value="1">入门题目</option>
+                                <option value="2">贪心算法</option>
+                                <option value="3">搜索</option>
+                                <option value="4">贪心算法</option>
+                                <option value="5">数据结构</option>
+                                <option value="6">动态规划</option>
+                                <option value="7">STL练习</option>
+                                <option value="8">大数问题</option>
+                                <option value="9">图论</option>
+                                <option value="10">计算几何</option>
+                                <option value="11">数学</option>
+                                <option value="12">矩阵计算</option>
+                            </select>
+                        </div>
+                        <div class="input_container">
+                            <label for="TimeLimit">时间限制:</label><br /> <input type="text" name="TimeLimit" required>
+                        </div>
+                        <div class="input_container">
+                            <label for="MemLimit">空间限制:</label><br /><input type="text" name="MemLimit" required>
+                        </div>
+                        <div class="input_container">
+                            <label for="Difficulty">难度:</label><br />
+                            <input type="text" name="Difficulty" class="easyui-numberspinner" style="width:80px;" required="required" data-options="min:1,max:5,editable:false" value="1">
+                        </div>
+                        <div class="input_container">
+                            <label for="Describe">题目描述:</label><br /><textarea rows="15" cols="30" name="Describe" style="resize:none;" required></textarea>
+                        </div>
+                        <div class="input_container">
+                            <label for="Input">输入:</label><br /><textarea rows="10" cols="25" name="Input" style="resize:none;" required></textarea>
+                        </div>
+                        <div class="input_container">
+                            <label for="Output">输出:</label><br /> <textarea rows="10" cols="25" name="Output" style="resize:none;" required></textarea>
+                        </div>
+                        <div class="input_container">
+                            <label for="SampleInput">输入样例:</label><br /><textarea rows="10" cols="25" name="SampleInput" style="resize:none;" required></textarea>
+                        </div>
+                        <div class="input_container">
+                            <label for="SampleOutput">输出样例:</label><br /> <textarea rows="10" cols="25" name="SampleOutput" style="resize:none;" required></textarea>
+                        </div>
+                        <div class="input_container">
+                            <label for="Source">来源:</label><br /> <input type="text" name="Source" required>
+                        </div>
+                        <div class="input_container">
+                            <label for="CreatorID">创建者ID:</label><br /> <input type="text" name="CreatorID" value="@Model.ID" readonly required>
+                        </div>
+                        <button class="easyui-linkbutton" iconCls="icon-ok" style="font-size:15px; font-weight:bold;" type="submit">提交</button>
+                    </div>
+                </form>
+            </div>
+
+
+            <!--添加比赛-->
+            <div title="添加比赛" iconCls="icon-add">
+                <table id="myselect" url="/Admin/Problemlist"
+                       title="选择题目" class="easyui-datagrid" style="width:700px;height:250px;margin:32px;padding:32px;"
+                       idfield="itemid" pagination="true"
+                       iconcls="icon-save">
+                    <thead>
+                        <tr>
+                            <th field="ck" checkbox="true"></th>
+                            <th field="id" width="80">ID</th>
+                            <th field="name" width="80">题目</th>
+                            <th field="typename" width="80">类型名称</th>
+                        </tr>
+                    </thead>
+                </table>
+                <div style="margin:20px">
+                    <button class="easyui-linkbutton" iconcls="icon-ok" style="font-size:15px; font-weight:bold;" onclick="getSelections()">选择题目</button>
+                </div>
+                <form id="onlinecontestadd" action="/Admin/AddOC" class="main_form" method="post">
+                    <div class="easyui-panel" title="添加比赛" style="padding:30px 60px;">
+                        <div class="input_container">
+                            <label for="Name">比赛名:</label><br /> <input type="text" name="Name" required>
+                        </div>
+                        <div class="input_container">
+                            <label for="CompetitionState">比赛状态:</label><br />
+                            <select class="form-control selectpicker" name="CompetitionState" title="比赛状态" required>
+                                <option value="0">已经结束</option>
+                                <option value="1">正在进行</option>
+                            </select>
+                        </div>
+                        <div class="input_container">
+                            <label for="StartTime">开始时间:</label><br /><input class="easyui-datetimebox" name="StartTime" data-options="required:true,showSeconds:false" value="5/20/2018 0:0" style="width:150px">
+                        </div>
+                        <div class="input_container">
+                            <label for="EndTime">结束时间:</label><br /><input class="easyui-datetimebox" name="EndTime" data-options="required:true,showSeconds:false" value="5/20/2018 0:0" style="width:150px">
+                        </div>
+                        <div class="input_container">
+                            <label for="Place">地点:</label><br /><textarea rows="10" cols="20" name="Place" style="resize:none;" required></textarea>
+                        </div>
+                        <div class="input_container">
+                            <label for="Describe">描述:</label><br /><textarea rows="10" cols="20" name="Describe" style="resize:none;" required></textarea>
+                        </div>
+                        <div class="input_container">
+                            <label for="AdminID">管理员ID:</label><br /> <input type="text" name="AdminID" value="@Model.ID" readonly required>
+                        </div>
+                        <div><input id="selectpro" name="selectpro" hidden /></div>
+                        <button class="easyui-linkbutton" iconCls="icon-ok" style="font-size:15px; font-weight:bold;" type="submit">提交</button>
+                    </div>
+                </form>
+            </div>
+                
+                  
+        </div>
+
+    </div>
+
+
+    <!--修改密码窗口-->
+    <div id="w" class="easyui-window" title="修改密码" collapsible="false" minimizable="false" maximizable="false" data-options="iconCls:'icon-print'" style="width: 300px; height: 150px; padding: 5px; background: #fafafa;">
+        <div class="easyui-layout" fit="true">
+            <div region="center" border="false" style="padding: 10px; background: #fff; border: 1px solid #ccc;">
+                <table cellpadding=3>
+                    <tr>
+                        <td>新密码：</td>
+                        <td><input id="txtNewPass" type="Password" class="txt01" /></td>
+                    </tr>
+                    <tr>
+                        <td>确认密码：</td>
+                        <td><input id="txtRePass" type="Password" class="txt01" /></td>
+                    </tr>
+                </table>
+            </div>
+            <div region="south" border="false" style="text-align: right; height: 30px; line-height: 30px;">
+                <button id="btnEp" class="easyui-linkbutton" iconcls="icon-ok"> 确定</button>
+                <button id="btnCancel" class="easyui-linkbutton" iconcls="icon-cancel">取消</button>
+            </div>
+        </div>
+    </div>
+
+    
+
+</body>
+</html>
